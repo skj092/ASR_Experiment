@@ -1,2 +1,28 @@
-# ASR_Experiment
-ASR pipeline
+## What is Automatic Speech Recognation?
+* Automatic Speech Recognition (ASR) is a technology that converts spoken language into written text. It's also known as speech-to-text or voice recognition.
+## What are some of the application of Automatic Speech Recognation ?
+- Transcribing spoken language for documentation or closed captioning.
+- Enabling voice commands for virtual assistants and smart devices.
+- Assisting in customer service through automated phone systems.
+- Supporting accessibility for individuals with hearing impairments.
+- Enhancing the functionality of speech analytics tools in call centers.
+## What is Mel Spectrogram of an Audio file?
+* A Mel spectrogram is a visual representation of the frequency content of an audio signal, where frequencies are scaled to mimic human hearing perception. It's created by dividing audio into small frames, converting them to the frequency domain, and applying Mel filterbanks to capture spectral information. The resulting 2D matrix shows how different frequencies evolve over time, commonly used for tasks like speech recognition and music analysis.
+## How to compute Mel Spectrogram?
+- Here's how a Mel spectrogram is typically computed:
+1. Preprocessing: The audio signal is divided into short overlapping frames. This is done to analyze the audio in small chunks, as the frequency content of audio can vary over time.
+2. Windowing: Each frame is usually multiplied by a window function (e.g., Hamming or Hanning window) to reduce spectral leakage and smoothen the signal at the frame boundaries.
+3. Fast Fourier Transform (FFT): The Fourier transform is applied to each frame to convert it from the time domain to the frequency domain. This results in a spectrum for each frame, showing the amplitude of different frequency components.
+4. Mel Filterbank: The Mel filterbank is a set of triangular filters that are spaced along the mel scale. The mel scale is designed to mimic the non-linear frequency perception of the human auditory system. These filters are used to map the linearly spaced FFT bins onto the mel scale.
+5. Filterbank Energies: For each frame, the energy under each of the Mel filters is computed. This results in a vector of filterbank energies that represent how much energy is present in each mel-frequency band for that frame.
+6. Log Compression: The filterbank energies are often transformed using the logarithm operation to mimic the logarithmic response of the human auditory system. This step emphasizes lower-frequency components and compresses the dynamic range of the data.
+7. Discrete Cosine Transform (DCT): The DCT is applied to the log-compressed filterbank energies to decorrelate the coefficients. Typically, only a subset of the DCT coefficients is retained to reduce dimensionality.
+8. Time Concatenation: The DCT coefficients for all the frames are concatenated along the time axis to form a 2D representation, which is often referred to as the Mel spectrogram.
+# What are some of the preprocessing technique of Audio File to solve ASR problem?
+- Here are some of the speech signal preprocessing technique which is widly used in speech recognition tasks:
+1. Voice Activity Detection : Voice Activity Detection (VAD) is a technique used in speech processing to identify whether human speech is present in an audio signal. It differentiates between speech and non-speech segments, like background noise or silence. This is important in automatic speech recognition, as it helps the system focus only on the relevant parts containing speech, enhancing efficiency and accuracy.
+2. Noise Reduction : Noise removal is the process of cleaning the noise from a mixed sound of speech and noise to keep only the clean speech.
+3. Pre-emphasis: Pre-emphasis in the context of Automatic Speech Recognition (ASR) is a preprocessing technique used to improve the signal-to-noise ratio in speech signals. By applying a pre-emphasis filter, the higher frequency components of the speech signal are boosted, making them more prominent relative to the lower frequencies. This not only helps in balancing the frequency spectrum but also aids in reducing the effect of background noise and improving the clarity of the speech signal for further processing steps in the ASR system.
+4. Framing: Framing in Automatic Speech Recognition (ASR) is a preprocessing step where the continuous speech signal is divided into small, manageable segments or frames. This is done because speech varies rapidly over time and analyzing the entire signal at once is impractical. By breaking the signal into frames, the system can treat each frame as though the speech within it is statistically stationary, simplifying the analysis.Each frame typically ranges from 20 to 40 milliseconds in length. To ensure continuity and avoid loss of information at the boundaries, frames often overlap with each other, usually by 50-60%. This overlap allows for smoother transitions between frames and helps in capturing the temporal dynamics of speech.
+5. Windowing : Windowing in Automatic Speech Recognition (ASR) is a process that follows framing. After the continuous speech signal is divided into frames, each frame is multiplied by a window function. This step is crucial to minimize the discontinuities at the beginning and end of each frame, which can lead to spectral leakage — a phenomenon where the energy of the signal leaks into adjacent frequencies, causing distortion.
+6. Normalization: Normalization in the context of Automatic Speech Recognition (ASR) is a preprocessing step aimed at adjusting the speech signal to a consistent level. The goal is to reduce the variability in the signal that arises from different recording conditions, speaker variations, microphone characteristics, or environmental factors.
